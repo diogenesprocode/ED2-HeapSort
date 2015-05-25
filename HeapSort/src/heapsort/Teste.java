@@ -28,17 +28,19 @@ public class Teste {
     }  
   
     public static void heapSort(int v[]) {  
+        //primeiro cria a estrutura heap no vetor  organizando tudo
         buildMaxHeap(v);  
         int n = v.length;  
-  
-        for (int i = v.length - 1; i > 0; i--) {  
+        // organiza o vetor
+        for (int i = v.length - 1; i > 0; i--) { 
+            
             swap(v, i, 0);  
             maxHeapify(v, 0, --n);  
         }  
     }  
-  
+   //metodo constroi o heap no vetor
     private static void buildMaxHeap(int v[]) {
-        //For para dividir o vetor na arvore
+         
         //pega o tamanho do vetor e divide por dois menos 1 e vai diminuindo até não ouvber mais posições no vetor
         for (int i = v.length / 2 - 1; i >= 0; i--)  
             maxHeapify(v, i, v.length);  
