@@ -7,8 +7,10 @@ public class Teste {
           
         // Apresenta valores antes de ordenar  
         System.out.println("antes:");  
-        for (int n : numeros){  
-            System.out.print(" " + n);  
+        
+        for (int i=0;i<numeros.length;i++){
+        //for (int n : numeros){  
+            System.out.print(" " + numeros[i]);   
         }  
         System.out.println();  
   
@@ -17,11 +19,12 @@ public class Teste {
           
         // Apresenta valores depois de ordenar  
         System.out.println("depois:");  
-        for (int n : numeros){  
-            System.out.print(" " + n);  
-        }  
+        for (int i=0;i<numeros.length;i++){
+             System.out.print(" " + numeros[i]);  
+        } 
+        
         System.out.println();  
-        System.exit(0);  
+       
     }  
   
     public static void heapSort(int v[]) {  
@@ -34,22 +37,31 @@ public class Teste {
         }  
     }  
   
-    private static void buildMaxHeap(int v[]) {  
+    private static void buildMaxHeap(int v[]) {
+        //For para dividir o vetor na arvore
+        //pega o tamanho do vetor e divide por dois menos 1 e vai diminuindo até não ouvber mais posições no vetor
         for (int i = v.length / 2 - 1; i >= 0; i--)  
             maxHeapify(v, i, v.length);  
     }  
-  
-    private static void maxHeapify(int v[], int pos, int n) {  
-        int max = 2 * pos + 1, right = max + 1;  
-        if (max < n) {  
-            if (right < n && v[max] < v[right]) max = right;  
-            if (v[max] > v[pos]) {  
-                swap(v, max, pos);  
-                maxHeapify(v, max, n);  
+   // metodo de organização
+    private static void maxHeapify(int v[], int pos, int tamVet) {  
+        //filho esquerdo recebe a posição do pai vezes 2 + 1 a psosição da direita é a esquerda mais 1
+        int esqrd = 2 * pos + 1, dir = esqrd + 1;  
+        //verifica se o filho esquerdo é uma posição valida
+        if (esqrd < tamVet) { 
+            //se o filho direito é uma posição valida e o valor da esquerda for menor que o filho da direita
+            if (dir < tamVet && v[esqrd] < v[dir]) 
+                //o valor da esquerda recebe o valor da direita pois a esquerda tem semrpe que ficar com o menor
+                 esqrd = dir;  
+            //se o valor da esquerda fpor maior que o do pai, existe uma troca entre o valor da raiz(pai) e seu filho da esquerda 
+            if (v[esqrd] > v[pos]) {  
+                swap(v, esqrd, pos);
+                // chama o metodo de organização novamente
+                maxHeapify(v, esqrd, tamVet);  
             }  
         }  
     }  
-  
+    //metodo que realiza a troca no vetor pelo indice 
     private static void swap(int[] v, int j, int aposJ) {  
         int aux = 0;  
         aux = v[j];  
