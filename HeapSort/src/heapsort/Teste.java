@@ -33,8 +33,9 @@ public class Teste {
         int n = v.length;  
         // organiza o vetor
         for (int i = v.length - 1; i > 0; i--) { 
-            
+            //pega a raiz e coloca na ultima posição do vetor
             swap(v, i, 0);  
+            //re-organiza o restante do vetor para coloca o maior numero na raiz
             maxHeapify(v, 0, --n);  
         }  
     }  
